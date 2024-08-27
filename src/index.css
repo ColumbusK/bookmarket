@@ -83,8 +83,17 @@ padding: ٠;
 box-sizing: border-box;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  padding: 0;
+  min-height: 100vh; /* 保证页面最小高度为视口高度，以确保 Footer 在底部 */
+  position: relative; /* 设置为相对定位 */
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -123,7 +132,7 @@ h3 {
 
 .container {
   width: 100%;
-  max-width: 1060px;
+  max-width: 1260px;
   margin: 0 auto;
   padding: 0 20px;
   text-align: center;
@@ -132,11 +141,13 @@ h3 {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   padding: 28px 0;
   border-bottom: 1px solid #e6e6e6;
   margin-bottom: 20px;
 }
+
+
 
 .logo a {
   display: flex;
@@ -150,7 +161,7 @@ h3 {
 }
 
 .logo a svg {
-  width: 20px;
+  width: 24px;
   height: auto;
   margin-top: 4px;
   margin-right: 5px;
@@ -163,7 +174,7 @@ h3 {
 }
 
 .header ul li {
-  margin-left: 20px;
+  margin-left: 0px;
 }
 
 .header ul li a {
@@ -220,6 +231,29 @@ h3 {
 .content {
   width: 50%;
   margin: 0 auto;
+}
+
+.tasks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  transition: linear;
+}
+
+.task {
+  background-color: #f4f4f4;
+  margin: 10px 0;
+  padding: 20px 0 10px;
+  position: relative;
+}
+
+.task .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
 }
 
 .form-group {
@@ -313,6 +347,28 @@ h3 {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
+
+
+.topic-navbar li {
+  writing-mode: horizontal-tb !important; /* 强制水平显示，!important 可以确保优先级高于其他样式 */
+}
+
+/* HTML: <div class="loader"></div> */
+.loader {
+    width: 40px;
+    height: 40px;
+    --c:no-repeat linear-gradient(gray 0 0);
+    background: var(--c),var(--c),var(--c),var(--c);
+    background-size: 21px 21px;
+    animation: l5 1.5s infinite cubic-bezier(0.3,1,0,1);
+}
+@keyframes l5 {
+   0%   {background-position: 0    0,100% 0   ,100% 100%,0 100%}
+   33%  {background-position: 0    0,100% 0   ,100% 100%,0 100%;width:60px;height: 60px}
+   66%  {background-position: 100% 0,100% 100%,0    100%,0 0   ;width:60px;height: 60px}
+   100% {background-position: 100% 0,100% 100%,0    100%,0 0   }
+}
+
 
 @keyframes loading {
   0% {
